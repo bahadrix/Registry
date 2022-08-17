@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace Registry;
+namespace NimbleRegistry;
 
 public class RegistryItem
 {

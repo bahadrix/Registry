@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Registry;
+namespace NimbleRegistry;
 
 public class XmlRegistry : IRegistry
 {

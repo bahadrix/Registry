@@ -6,7 +6,11 @@
         <Nullable>enable</Nullable>
         <Authors>Bahadir Katipoglu</Authors>
         <PackageProjectUrl>https://github.com/bahadrix/Registry</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/bahadrix/Registry</RepositoryUrl>
       <UserSecretsId>5a440c56-ca8a-48c2-ae2e-79d5e86411ec</UserSecretsId>
+      <PackageId>NimbleRegistry</PackageId>
+      <PackageVersion>0.8.0</PackageVersion>
+      <Title>Simple Persistable In-Memory Key-Object store</Title>
   </PropertyGroup>
 
 </Project>

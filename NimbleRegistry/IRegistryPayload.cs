@@ -1,4 +1,4 @@
-namespace Registry;
+namespace NimbleRegistry;
 
 public interface IRegistryPayload
 {
