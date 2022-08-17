@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Authors>Bahadir Katipoglu</Authors>
+        <PackageProjectUrl>https://github.com/bahadrix/Registry</PackageProjectUrl>
+      <UserSecretsId>5a440c56-ca8a-48c2-ae2e-79d5e86411ec</UserSecretsId>
+  </PropertyGroup>
+
+</Project>
