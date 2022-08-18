@@ -2,7 +2,7 @@ using System.Xml.Serialization;
 
 namespace NimbleRegistry;
 
-public class RegistryItem
+public class RegistryItem : IRegistryItem
 {
     public RegistryItem()
     {

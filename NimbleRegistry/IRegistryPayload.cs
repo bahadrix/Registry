@@ -9,6 +9,6 @@ public static class RegistryItemPayloadExtensions
 {
     public static string Register(this IRegistryPayload payload, IRegistry registry)
     {
-        return registry.Register(payload.Id, payload);
+        return registry.Register(payload);
     }
 }

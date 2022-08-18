@@ -2,7 +2,7 @@ namespace NimbleRegistry;
 
 public interface IRegistry
 {
-    string Register<T>(string id, T payload) where T : IRegistryPayload;
+    string Register<T>(T payload) where T : IRegistryPayload;
     IEnumerable<T> Get<T>() where T : IRegistryPayload;
     IEnumerable<T> Get<T>(IEnumerable<string> ids) where T : IRegistryPayload;
     object? Get(string id);
@@ -16,4 +16,5 @@ public interface IRegistry
     IEnumerable<object?> Get(IEnumerable<string> ids);
     void Clear();
     void Save();
+    void Drop();
 }

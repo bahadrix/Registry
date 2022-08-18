@@ -22,10 +22,10 @@ public class XmlRegistry : IRegistry
     }
 
 
-    public string Register<T>(string id, T payload) where T : IRegistryPayload
+    public string Register<T>(T payload) where T : IRegistryPayload
     {
-        Register(new RegistryItem(id, payload));
-        return id;
+        Register(new RegistryItem(payload.Id, payload));
+        return payload.Id;
     }
 
     public IEnumerable<T> Get<T>() where T : IRegistryPayload
@@ -110,6 +110,19 @@ public class XmlRegistry : IRegistry
         Write(new StreamWriter(filePath));
     }
 
+    public void Drop()
+    {
+        mutex.WaitOne();
+        try
+        {
+            File.Delete(filePath);
+        }
+        finally
+        {
+            mutex.Close();
+        }
+    }
+
     private void Write(TextWriter writer)
     {
         mutex.WaitOne();
@@ -124,7 +137,7 @@ public class XmlRegistry : IRegistry
             var xmlWriter = new XmlTextWriter(writer);
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.Indentation = 4;
-            
+
             serializer.Serialize(xmlWriter, items);
         }
         finally
@@ -165,7 +178,7 @@ public class XmlRegistry : IRegistry
         sw.Close();
         return sw.ToString();
     }
-    
+
     private void Register(RegistryItem registryItem)
     {
         kvStore[registryItem.Id] = registryItem;
