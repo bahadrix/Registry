@@ -3,15 +3,22 @@ namespace NimbleRegistry;
 public class XmlRegistryFactory : IRegistryFactory<XmlRegistry>
 {
     private readonly string folderPath;
-
-    public XmlRegistryFactory(string folderPath)
+    private readonly IEnumerable<Type> additionalTypes;
+    
+    public XmlRegistryFactory(string folderPath, IEnumerable<Type>? additionalTypes = null)
     {
+        this.additionalTypes = additionalTypes ?? new List<Type>();
         this.folderPath = folderPath;
     }
 
     public XmlRegistry Create(string name)
     {
-        return new XmlRegistry(Path.Join(folderPath, $"{name}.xml"));
+        var reg = new XmlRegistry(Path.Join(folderPath, $"{name}.xml"));
+        foreach (var additionalType in additionalTypes)
+        {
+            reg.AdditionalTypes.Add(additionalType);
+        }
+        return reg;
     }
 
     public IEnumerable<string> Scan()

@@ -9,12 +9,15 @@ public class XmlRegistry : IRegistry
     private readonly string filePath;
     private readonly ConcurrentDictionary<string, RegistryItem> kvStore;
     private readonly Mutex mutex = new();
-
+    public HashSet<Type> AdditionalTypes;
+    
     public XmlRegistry(string filePath)
     {
         this.filePath = filePath;
         kvStore = new ConcurrentDictionary<string, RegistryItem>();
 
+        AdditionalTypes = new HashSet<Type>();
+        
         if (File.Exists(filePath))
             Read(filePath);
         else
@@ -152,13 +155,14 @@ public class XmlRegistry : IRegistry
         try
         {
             var reader = new StreamReader(xmlFilePath);
-
+            
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
                 .Where(t => !t.IsAbstract)
                 .Where(t => typeof(IRegistryPayload).IsAssignableFrom(t))
+                .Concat(AdditionalTypes)
                 .Distinct().ToArray();
-
+    
             var serializer = new XmlSerializer(typeof(List<RegistryItem>), types);
             var items = (List<RegistryItem>) serializer.Deserialize(reader)!;
             foreach (var registryItem in items) kvStore[registryItem.Id] = registryItem;

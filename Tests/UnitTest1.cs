@@ -25,7 +25,7 @@ public class MixedTests
 
         var testRegistry = store.CreativeGet("test");
 
-        testRegistry.Register(new Person
+        var person = new Person
         {
             Name = "Jamal",
             Address = new Address
@@ -33,7 +33,8 @@ public class MixedTests
                 Street = "Panama St. 18",
                 City = "Malibu Ct."
             }
-        });
+        };
+        testRegistry.Register(person);
 
         testRegistry.Save();
 
@@ -42,6 +43,8 @@ public class MixedTests
         var testRegistry2 = store2.CreativeGet("test2");
 
         Assert.AreEqual(testRegistry.DumpXml(), testRegistry2.DumpXml());
+        
+        Assert.NotNull(testRegistry2.Get<Person>(person.Id));
     }
 
     [TearDown]
@@ -50,11 +53,16 @@ public class MixedTests
         tempFolder.Dispose();
     }
 
-    public class Person : IRegistryPayload
+    public class BaseEntity : IRegistryPayload
+    {
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+    }
+    
+    public class Person : BaseEntity
     {
         public string Name { get; set; }
         public Address Address { get; set; }
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        
     }
 
     public class Address
