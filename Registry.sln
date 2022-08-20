@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NimbleRegistry", "NimbleReg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{21554EC4-D004-4AEC-999E-9B04D783AD3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEntities", "TestEntities\TestEntities.csproj", "{6720D2D9-88C7-47AB-AD86-3A49A578C50B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{21554EC4-D004-4AEC-999E-9B04D783AD3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21554EC4-D004-4AEC-999E-9B04D783AD3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21554EC4-D004-4AEC-999E-9B04D783AD3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6720D2D9-88C7-47AB-AD86-3A49A578C50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6720D2D9-88C7-47AB-AD86-3A49A578C50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6720D2D9-88C7-47AB-AD86-3A49A578C50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6720D2D9-88C7-47AB-AD86-3A49A578C50B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
