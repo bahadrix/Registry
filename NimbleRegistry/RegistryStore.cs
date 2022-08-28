@@ -13,7 +13,8 @@ public class RegistryStore<T> where T : IRegistry
 {
     private readonly ConcurrentDictionary<string, T> registries;
     private readonly IRegistryFactory<T> registryFactory;
-
+    private readonly Mutex mutex = new();
+    
     public RegistryStore(IRegistryFactory<T> registryFactory)
     {
         this.registryFactory = registryFactory;
@@ -50,14 +51,15 @@ public class RegistryStore<T> where T : IRegistry
 
     public bool Delete(string id)
     {
-        
-        if (!registries.TryGetValue(id, out var reg))
-            return false;
-
-        // TODO: we have parallelism breach here that may happens in extreme traffics. Mutex, etc. can be added later.
-        
-        registries.Remove(id, out _);
-        reg.Drop();
-        return true;
+        mutex.WaitOne();
+        try
+        {
+            registryFactory.Delete(id);
+            return registries.Remove(id, out _);
+        }
+        finally
+        {
+            mutex.ReleaseMutex();
+        }
     }
 }

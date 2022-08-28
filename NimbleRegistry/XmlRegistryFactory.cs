@@ -21,6 +21,15 @@ public class XmlRegistryFactory : IRegistryFactory<XmlRegistry>
         return reg;
     }
 
+    public bool Delete(string name)
+    {
+        var path = Path.Join(folderPath, $"{name}.xml");
+        if (!File.Exists(path)) return false;
+        File.Delete(path);
+        return true;
+
+    }
+
     public IEnumerable<string> Scan()
     {
         return Directory.GetFiles(folderPath, "*.xml")

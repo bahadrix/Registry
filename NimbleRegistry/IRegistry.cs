@@ -16,5 +16,4 @@ public interface IRegistry
     IEnumerable<object?> Get(IEnumerable<string> ids);
     void Clear();
     void Save();
-    void Drop();
 }

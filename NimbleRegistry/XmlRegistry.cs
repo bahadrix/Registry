@@ -102,24 +102,19 @@ public class XmlRegistry : IRegistry
     {
         return ids.Select(Get);
     }
-
-    public void Clear()
-    {
-        kvStore.Clear();
-    }
+    
 
     public void Save()
     {
         Write(new StreamWriter(filePath));
     }
 
-    public void Drop()
+    public void Clear()
     {
         mutex.WaitOne();
         try
         {
             kvStore.Clear();
-            File.Delete(filePath);
         }
         finally
         {
