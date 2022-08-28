@@ -3,7 +3,9 @@ include .env
 clean:
 	rm -rf bin/Release
 
-pack: clean
+build:
+	dotnet build --configuration Release
+pack: clean build
 	dotnet pack --configuration Release
 
 push: 
