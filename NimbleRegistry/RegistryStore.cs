@@ -50,8 +50,14 @@ public class RegistryStore<T> where T : IRegistry
 
     public bool Delete(string id)
     {
-        if (!registries.Remove(id, out _)) return false;
-        registries[id].Drop();
+        
+        if (!registries.TryGetValue(id, out var reg))
+            return false;
+
+        // TODO: we have parallelism breach here that may happens in extreme traffics. Mutex, etc. can be added later.
+        
+        registries.Remove(id, out _);
+        reg.Drop();
         return true;
     }
 }

@@ -118,6 +118,7 @@ public class XmlRegistry : IRegistry
         mutex.WaitOne();
         try
         {
+            kvStore.Clear();
             File.Delete(filePath);
         }
         finally
